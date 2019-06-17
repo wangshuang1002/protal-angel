@@ -66,7 +66,9 @@ BeanFactory 通过实现接口 BeanDefinitionRegistry 通过BeanDefinitionRegist
 	我们来总结一下一个Bean是如何注册到容器中，然后被我们获取的：首先我们需要配置该Bean的依赖信息，通常我们配置在xml文件中，然后我们通过XmlBeanDefinitionReader读取文件内容，
 然后将文件内容映射到相应的BeanDefinition，然后我们可以通过BeanFactory和BeanDefinitionRegistry的具体实现类,比如DefaultListableBeanFactory实现Bean的注册和获取。
 
-
+	应用项目在web容器的时候加载这些配置文件，然后更具这些配置文件前的标示例如（ID,REF）之类的标签来区分各个的作用然后通过Java反射生成想对应的实例对象，通过一个Map将配置文件读取到的文本作为key值，反射生成的实例作为value值存进Map中进行维护。
+这样，所有的配置文件对象化就有个栖身之所了，这个也是IOC容器的作用。写到这里，突然觉得工厂模式让IOC这种配置对象化体现的淋漓尽致，你无须关注对象是如何生成的，
+你只需关注你需要什么样的配置，在你的配置文件中描述清楚，然后教个xmlFactoryBean这个类去生产就能拿到你所有的对象。
 
 
 
